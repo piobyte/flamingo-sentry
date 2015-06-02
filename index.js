@@ -2,8 +2,7 @@ var addon = require('flamingo/src/addon'),
     raven = require('raven'),
     bunyan = require('bunyan');
 
-var logger = require('flamingo/src/logger').build('addon:flamingo-sentry'),
-    ravenClient;
+var ravenClient;
 
 exports[addon.HOOKS.ENV] = function () {
     return [['SENTRY_DSN', 'SENTRY_DSN']];
@@ -22,6 +21,7 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
     levels[bunyan.WARN] = 'warning';
     levels[bunyan.ERROR] = 'error';
     levels[bunyan.FATAL] = 'fatal';
+
     ravenClient = new raven.Client(conf.SENTRY_DSN);
 
     return [{
@@ -42,5 +42,5 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
                 });
             }
         }
-    }]
+    }];
 };
