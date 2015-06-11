@@ -9,7 +9,7 @@
 
 ## Env
 
-`SENTRY_DSN` => `SENTRY_DSN`
+- `SENTRY_DSN` → `SENTRY_DSN`
 
 ## Config
 

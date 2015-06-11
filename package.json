@@ -5,6 +5,7 @@
   "description": "flamingo-sentry is a https://github.com/piobyte/flamingo addon to adds a bunyan log stream for sentry integration.",
   "scripts": {
     "lint": "node make lint",
+    "preversion": "npm test",
     "test": "node make test"
   },
   "author": "Christian",
