@@ -7,20 +7,14 @@
 
 `flamingo-sentry` is a [flamingo](https://github.com/piobyte/flamingo) addon that enables error logging to [sentry](https://www.getsentry.com/welcome/).
 
-## Env
+# Installation
 
-- `SENTRY_DSN` → `SENTRY_DSN`
+`npm i --save flamingo-sentry`
 
-## Config
+# Documentation 
 
-```js
-return {
-    SENTRY_DSN: 'http://dc462d2107cfc8d8f722043f1181ae4d:c1d154a0e7cedf19b070fa252534bd14@sentry.example.org:1234/5'
-};
-```
-<!--- 'http://' + chance.hash({length: 32}) + ':' + chance.hash({length:32}) + '@sentry.example.org:1234/5' -->
+see [flamingo-sentry docs](https://piobyte.github.io/flamingo-sentry/index.html)
 
-## Example
+# Tutorials 
 
-1. `npm i --save flamingo-sentry`
-2. `SENTRY_DSN=your.sentry.dsn node path/to/flamingo/index.js`
+for basic installation and setup see [flamingo-sentry/tutorial-usage](https://piobyte.github.io/flamingo-sentry/tutorial-usage.html)

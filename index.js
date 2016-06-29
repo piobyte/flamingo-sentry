@@ -1,8 +1,19 @@
-var addon = require('flamingo/src/addon');
-var raven = require('raven');
-var bunyan = require('bunyan');
+const addon = require('flamingo/src/addon');
+const raven = require('raven');
+const bunyan = require('bunyan');
 
-var ravenClient;
+/**
+ * sentry addon hooks
+ * @module flamingo-sentry/index
+ */
+
+/**
+ * Flamingo configuration
+ * @external Config
+ * @see {@link https://piobyte.github.io/flamingo/Config.html|flamingo Config}
+ */
+
+let ravenClient;
 
 /**
  * Function to ensure that the the sentry `msg` field exists on the log object.
@@ -19,18 +30,48 @@ function ensureLogMessage(obj) {
   return obj;
 }
 
+/**
+ * Returns sentry environment mappings
+ * @name ENV
+ * @function
+ * @example
+ * `SENTRY_DSN` => `SENTRY_DSN`
+ * @return {Array} environment mappings
+ */
 exports[addon.HOOKS.ENV] = function () {
   return [['SENTRY_DSN', 'SENTRY_DSN']];
 };
 
+/**
+ * Returns default addon conf
+ * @name CONF
+ * @function
+ * @return {{SENTRY_DSN: undefined}}
+ */
 exports[addon.HOOKS.CONF] = function () {
   return {
     SENTRY_DSN: undefined
   };
 };
 
+
+/**
+ * Result of input reading
+ * @typedef {{level: number, stream: {write: function}}} BunyanStreamDefinition
+ * @property {number} level log level
+ * @property {{write: function}} stream object where write function sends incoming messages to sentry via raven
+ */
+
+/**
+ * Returns addon log streams builder function
+ * @param {external:Config} conf
+ * @name LOG_STREAM
+ * @function
+ * @see {@link bunyan.docs}
+ * @return {Array.<BunyanStreamDefinition>} bunyan stream definitions
+ */
 exports[addon.HOOKS.LOG_STREAM] = function (conf) {
-  var levels = {};
+  const levels = {};
   levels[bunyan.DEBUG] = 'debug';
   levels[bunyan.INFO] = 'info';
   levels[bunyan.WARN] = 'warning';
@@ -43,7 +84,7 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
     level: bunyan.WARN,
     stream: {
       write: function (msg) {
-        var obj = {};
+        let obj = {};
         try {
           obj = ensureLogMessage(JSON.parse(msg));
         } catch (e) {
