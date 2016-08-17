@@ -1,12 +1,14 @@
 {
   "name": "flamingo-sentry",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "main": "index.js",
   "description": "flamingo-sentry is a https://github.com/piobyte/flamingo addon to adds a bunyan log stream for sentry integration.",
   "scripts": {
     "lint": "node node_modules/eslint/bin/eslint.js index.js test src",
     "pretest": "npm run lint",
-    "test": "true",
+    "test": "TEST=true npm run cover",
+    "precover": "rm -r coverage 2>/dev/null || true",
+    "cover": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha",
     "docs": "node node_modules/jsdoc/jsdoc.js index.js -r -u tutorials -t ./node_modules/postman-jsdoc-theme -P package.json -R README.md -d docs",
     "preversion": "npm run test"
   },
@@ -27,13 +29,17 @@
   },
   "dependencies": {
     "bunyan": "^1.8.1",
-    "flamingo": "^2.0.0-alpha.15",
+    "flamingo": "^2.0.0-alpha.17",
     "lodash.some": "^4.6.0",
     "raven": "^0.12.1"
   },
   "devDependencies": {
     "eslint": "^3.3.1",
+    "got": "^6.3.0",
+    "istanbul": "^0.4.4",
     "jsdoc": "^3.4.0",
+    "mocha": "^3.0.2",
+    "mockery": "^1.7.0",
     "postman-jsdoc-theme": "0.0.2"
   }
 }

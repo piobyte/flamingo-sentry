@@ -21,6 +21,7 @@ let ravenClient;
  * @return {object} obj input object
  */
 function ensureLogMessage(obj) {
+  /* istanbul ignore next */
   if (!obj.msg) {
     if (obj.request) {
       obj.msg = 'request error for: ' + obj.request.uri.href;
@@ -85,6 +86,7 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
     stream: {
       write: function (msg) {
         let obj = {};
+        /* istanbul ignore next */
         try {
           obj = ensureLogMessage(JSON.parse(msg));
         } catch (e) {
