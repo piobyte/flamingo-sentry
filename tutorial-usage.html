@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial: Basic usage - Postman Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Tutorials</h3><ul><li><a href="tutorial-usage.html">Basic usage</a></li></ul><h3>Modules</h3><ul><li><a href="module-flamingo-sentry_index.html">flamingo-sentry/index</a><ul class='methods'><li data-type='method'><a href="module-flamingo-sentry_index.html#~CONF">CONF</a></li><li data-type='method'><a href="module-flamingo-sentry_index.html#~ensureLogMessage">ensureLogMessage</a></li><li data-type='method'><a href="module-flamingo-sentry_index.html#~ENV">ENV</a></li><li data-type='method'><a href="module-flamingo-sentry_index.html#~LOG_STREAM">LOG_STREAM</a></li></ul></li></ul><h3>Externals</h3><ul><li><a href="external-Config.html">Config</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Tutorial: Basic usage</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <h2>Basic usage</h2>
+</header>
+
+<article>
+    <ul>
+<li><code>npm i -s flamingo</code></li>
+<li><code>npm i -s flamingo-sentry</code></li>
+</ul>
+<p><code>flamingo-sentry</code> is an addon that only relies on addon hooks (<code>ENV</code>, <code>CONF</code> and <code>LOG_STREAM</code>), 
+which mean you don't have to change anything except providing config values for sentry.
+Upon starting flamingo, the addon loader will automatically locate and run <code>flamingo-sentry</code>.</p>
+<h2>Configuring via environment variables</h2><p>See <a href="module-flamingo-sentry_index.html">ENV</a> for all existing environment mappings.</p>
+<p>To start with custom environment variables, run i.e. </p>
+<pre class="prettyprint source lang-sh"><code>SENTRY_DSN=&quot;http://dc462d2107cfc8d8f722043f1181ae4d:c1d154a0e7cedf19b070fa252534bd14@sentry.example.org:1234/5&quot; node my-flamingo.js</code></pre><!--- 'http://' + chance.hash({length: 32}) + ':' + chance.hash({length:32}) + '@sentry.example.org:1234/5' -->
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated at Fri Aug 19 2016 09:30:07 GMT+0200 (CEST)
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
