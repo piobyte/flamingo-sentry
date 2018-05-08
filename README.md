@@ -9,7 +9,7 @@
 
 # Installation
 
-`npm i --save flamingo-sentry`
+`yarn add flamingo-sentry`
 
 # Documentation 
 
