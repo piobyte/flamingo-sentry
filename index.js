@@ -1,5 +1,5 @@
 const addon = require('flamingo/src/addon');
-const raven = require('raven');
+const Raven = require('raven');
 const bunyan = require('bunyan');
 
 /**
@@ -12,8 +12,6 @@ const bunyan = require('bunyan');
  * @external Config
  * @see {@link https://piobyte.github.io/flamingo/Config.html|flamingo Config}
  */
-
-let ravenClient;
 
 /**
  * Function to ensure that the the sentry `msg` field exists on the log object.
@@ -79,7 +77,7 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
   levels[bunyan.ERROR] = 'error';
   levels[bunyan.FATAL] = 'fatal';
 
-  ravenClient = new raven.Client(conf.SENTRY_DSN);
+  Raven.config(conf.SENTRY_DSN).install();
 
   return [{
     level: bunyan.WARN,
@@ -94,7 +92,7 @@ exports[addon.HOOKS.LOG_STREAM] = function (conf) {
           obj.level = bunyan.FATAL;
         }
         obj.flamingo = {version: conf.VERSION};
-        ravenClient.captureMessage(obj.msg, {
+        Raven.captureMessage(obj.msg, {
           level: levels[obj.level],
           extra: obj
         });

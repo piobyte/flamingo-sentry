@@ -31,7 +31,7 @@
     "bunyan": "^1.8.1",
     "flamingo": "^2.1.3",
     "lodash.some": "^4.6.0",
-    "raven": "^0.12.1"
+    "raven": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^3.3.1",

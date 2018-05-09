@@ -16,17 +16,17 @@ describe('LOG_STREAM', function () {
     mockery.disable();
   });
 
-  it('calls ravenClient.captureMessage', function () {
+  it('calls Raven.captureMessage', function () {
     let capturedError = false;
-    class FakeClient {
-      captureMessage(message, data) {
-        if (data.level === 'error') {
-          capturedError = true;
-        }
+    const config = () => ({install(){}});
+    const captureMessage = (message, data) => {
+      if (data.level === 'error') {
+        capturedError = true;
       }
-    }
+    };
     mockery.registerMock('raven', {
-      Client: FakeClient,
+      config,
+      captureMessage,
     });
 
     const loader = new Loader(path.join(__dirname, '../'), {});
